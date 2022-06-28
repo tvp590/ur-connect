@@ -1,6 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import HomeIcon from "@mui/icons-material/Home";
+import SendIcon from "@mui/icons-material/Send";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import ForumIcon from "@mui/icons-material/Forum";
 
 function Header() {
   return (
@@ -14,13 +18,19 @@ function Header() {
       </Searchbar>
 
       <Menu>
-        <a href="#">Home</a>
-        <a href="#">chat</a>
-        <a href="#">new Post</a>
-        <a href="#">Q/A</a>
         <a href="#">
-          <ProfileMenu />
+          <HomeI />
         </a>
+        <a href="#">
+          <ChatI />
+        </a>
+        <a href="#">
+          <NewPost />
+        </a>
+        <a href="#">
+          <QandA />
+        </a>
+        <ProfileMenu />
       </Menu>
     </Container>
   );
@@ -38,6 +48,9 @@ const Container = styled.div`
   top: 0;
   left: 0;
   right: 0;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  z-index: 1;
 `;
 
 const Menu = styled.div`
@@ -51,8 +64,26 @@ const Menu = styled.div`
     margin-right: 20px;
     flex-wrap: nowrap;
   }
+
+  @media (max-width: 768px) {
+    margin-left: 20px;
+  }
 `;
 
-const Searchbar = styled.div``;
+const Searchbar = styled.div`
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
 
-const ProfileMenu = styled(AccountCircleIcon)``;
+const HomeI = styled(HomeIcon)``;
+
+const ChatI = styled(SendIcon)``;
+
+const NewPost = styled(AddCircleIcon)``;
+
+const QandA = styled(ForumIcon)``;
+
+const ProfileMenu = styled(AccountCircleIcon)`
+  cursor: pointer;
+`;
