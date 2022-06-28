@@ -2,22 +2,24 @@ import React from "react";
 import styled from "styled-components";
 import { Avatar } from "@mui/material";
 
-function Post() {
+function Post({ username, imageURL, caption }) {
   return (
     <Container>
       <First__component>
-        <User__Avatar src="/post1.png" alt="IchigoKurosaki" />
+        <User__Avatar src="/post1.png" alt="Devansh" />
         <User__name>
-          <h3>Username</h3>
+          <h3>{username}</h3>
         </User__name>
       </First__component>
 
       <Second__component>
-        <PostImage src="/post1.png" alt="UR Connect" />
+        <PostImage src={imageURL} alt="UR Connect" />
       </Second__component>
 
       <Third__component>
-        <h3>caption</h3>
+        <h4>
+          <strong>{username}</strong> {caption}
+        </h4>
       </Third__component>
     </Container>
   );
@@ -52,6 +54,10 @@ const PostImage = styled.img`
   border-bottom: 1px solid lightgrey;
 `;
 
-const Third__component = styled.div``;
+const Third__component = styled.div`
+  h4 {
+    font-weight: normal;
+  }
+`;
 
 export default Post;
