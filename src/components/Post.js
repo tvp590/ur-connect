@@ -26,7 +26,7 @@ function Post({ username, imageURL, caption }) {
 }
 
 const Container = styled.div`
-  margin-bottom: 45px;
+  margin-bottom: 25px;
   max-width: 600px;
   border: 1px solid lightgrey;
   border-radius: 4px;

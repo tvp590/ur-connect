@@ -1,32 +1,83 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Post from "./Post";
-import { db } from "../firebase";
+import Suggestion from "./Suggestion";
+import LightSpeed from "react-reveal/LightSpeed";
+import Slide from "react-reveal/Slide";
+// import { db } from "./firebase";
 
 function Home() {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState([
+    {
+      username: "Devansh",
+      imageURL:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ22jzDZ-b3KeP2jCqwhW7kuiArGEx_JJ5d0g&usqp=CAU",
+      caption: "see yaaa boi 🤘🏻",
+    },
+    {
+      username: "Devansh",
+      imageURL:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ22jzDZ-b3KeP2jCqwhW7kuiArGEx_JJ5d0g&usqp=CAU",
+      caption: "see yaaa boi 🤘🏻",
+    },
+    {
+      username: "Devansh",
+      imageURL:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ22jzDZ-b3KeP2jCqwhW7kuiArGEx_JJ5d0g&usqp=CAU",
+      caption: "see yaaa boi 🤘🏻",
+    },
+    {
+      username: "Devansh",
+      imageURL:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ22jzDZ-b3KeP2jCqwhW7kuiArGEx_JJ5d0g&usqp=CAU",
+      caption: "see yaaa boi 🤘🏻",
+    },
+    {
+      username: "Devansh",
+      imageURL:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ22jzDZ-b3KeP2jCqwhW7kuiArGEx_JJ5d0g&usqp=CAU",
+      caption: "see yaaa boi 🤘🏻",
+    },
+  ]);
 
-  useEffect(() => {
-    db.collection("posts").onSnapshot((snapshot) => {
-      setPosts(snapshot.docs.map((doc) => doc.data()));
-    });
-  }, []);
+  // useEffect(() => {
+  //   db.collection("posts").onSnapshot((snapshot) => {
+  //     setPosts(snapshot.docs.map((doc) => doc.data()));
+  //   });
+  // }, []);
 
   return (
-    <HomeContainer>
-      {posts.map((post) => (
-        <Post
-          username={post.username}
-          imageURL={post.imageURL}
-          caption={post.caption}
-        />
-      ))}
-    </HomeContainer>
+    <Wrap>
+      <Slide left>
+        <HomeContainer>
+          {posts.map((post) => (
+            <Post
+              username={post.username}
+              imageURL={post.imageURL}
+              caption={post.caption}
+            />
+          ))}
+        </HomeContainer>
+      </Slide>
+      <Slide right>
+        <RightBox>
+          <Suggestion />
+        </RightBox>
+      </Slide>
+    </Wrap>
   );
 }
 
+const RightBox = styled.div`
+  postion: fixed;
+`;
+
+const Wrap = styled.div`
+  display: flex;
+`;
+
 const HomeContainer = styled.div`
-  margin-top: 60px;
+  margin-top: 100px;
   margin-left: 300px;
   width: 500px;
 `;
