@@ -234,6 +234,7 @@ const SendMsg = styled.textarea`
   margin-left: 20px;
   right: 0;
   resize: none;
+  color: var(--text-color);
 `;
 
 const EmojiIcon = styled.div`
