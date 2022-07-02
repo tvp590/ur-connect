@@ -29,13 +29,14 @@ function Suggestion() {
 }
 
 const Wrap = styled.div`
+  margin-top: 100px;
+  margin-left: 50px;
   width: 100%;
-  position: relative;
+  // border: 1px solid lightgrey;
+  border-radius: 4px;
 `;
 
 const MainBox = styled.div`
-  margin-top: 100px;
-  margin-left: 50px;
   width: 70%;
   p {
     margin-top: 15px;

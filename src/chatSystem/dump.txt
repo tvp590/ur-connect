@@ -1,0 +1,50 @@
+
+<SideBoxWrap>
+      <SideBox__header>
+        <SideBox__search>
+          <MenuOutlinedIcon />
+
+          <Searchbox__input type="text" placeholder="Search" />
+        </SideBox__search>
+      </SideBox__header>
+      <SideBox__threads></SideBox__threads>
+      <SideBox__footer></SideBox__footer>
+    </SideBoxWrap>
+
+const SideBoxWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex: 0.25;
+  border-right: 1px solid rgba(190, 190, 190, 0.1);
+`;
+
+const SideBox__header = styled.div`
+  display: flex;
+  height: 60px;
+  padding: 10px;
+  align-items: center;
+`;
+
+const SideBox__search = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background-color);
+  flex: 1;
+  padding: 2px;
+  color: white;
+  border-radius: 5px;
+`;
+
+const Searchbox__input = styled.input`
+  border: none;
+  background-color: transparent;
+  color: white;
+  flex: 1;
+  outline-widht: 0;
+`;
+
+const SideBox__threads = styled.div``;
+
+const SideBox__footer = styled.div``;

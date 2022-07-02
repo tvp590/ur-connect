@@ -10,14 +10,17 @@ function Header() {
   return (
     <Container>
       <a>
-        <img src="/logotest2.svg" alt="UR Connect" />
+        <Logo src="/logotest2.svg" alt="UR Connect" />
       </a>
-
+      {/* 
       <Searchbar>
-        <input type="text" placeholder="Search" />
-      </Searchbar>
+        <SearchbarInput type="text" placeholder="Search" />
+      </Searchbar> */}
 
       <Menu>
+        <Searchbar>
+          <SearchbarInput type="text" placeholder="Search" />
+        </Searchbar>
         <a href="#">
           <HomeI />
         </a>
@@ -43,6 +46,7 @@ const Container = styled.div`
   min-height: 60px;
   position: fixed;
   display: flex;
+  flex: 1;
   align-items: center;
   padding: 0 20px;
   top: 0;
@@ -53,11 +57,16 @@ const Container = styled.div`
   z-index: 1;
 `;
 
+const Logo = styled.img`
+  margin-left: 30px;
+`;
+
 const Menu = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   right: 0;
+  margin-right: 30px;
 
   a {
     font-weight: 600;
@@ -75,6 +84,15 @@ const Searchbar = styled.div`
   @media (max-width: 768px) {
     display: none;
   }
+`;
+
+const SearchbarInput = styled.input`
+  width: 250px;
+  margin-right: 20px;
+  border: none;
+  outline: none;
+  padding: 10px;
+  font-size: 14px;
 `;
 
 const HomeI = styled(HomeIcon)``;

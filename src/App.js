@@ -4,12 +4,15 @@ import Header from "./components/Header";
 import Post from "./components/Post";
 import Home from "./components/Home";
 import styled from "styled-components";
+// import Chat from "./junk/Chat";
+import Gram from "./chatSystem/Gram";
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Home />
+      <Gram />
+      {/* <Header />
+      <Home /> */}
     </div>
   );
 }
