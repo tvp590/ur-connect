@@ -6,6 +6,8 @@ import { Search } from "@mui/icons-material";
 import Threads from "./Threads";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import AttachmentOutlinedIcon from "@mui/icons-material/AttachmentOutlined";
+import EmojiEmotionsOutlinedIcon from "@mui/icons-material/EmojiEmotionsOutlined";
+import SendIcon from "@mui/icons-material/Send";
 
 function SideBox() {
   return (
@@ -38,9 +40,13 @@ function SideBox() {
             <AttachIcon>
               <AttachmentOutlinedIcon />
             </AttachIcon>
-            <AttachIcon>
+            <TypeMsg>
               <SendMsg placeholder="Type a message..." />
-            </AttachIcon>
+            </TypeMsg>
+            <EmojiIcon>
+              <EmojiEmotionsOutlinedIcon />
+              <SendIcon />
+            </EmojiIcon>
           </ChatFoot>
         </ChatBox>
       </RightContainer>
@@ -51,6 +57,12 @@ function SideBox() {
 const AttachIcon = styled.div`
   display: flex;
   align-items: center;
+`;
+
+const TypeMsg = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
 `;
 
 const Threads__Box = styled.div`
@@ -169,6 +181,7 @@ const ChatBox = styled.div`
 const ChatArea = styled.div``;
 const ChatFoot = styled.div`
   display: flex;
+  flex: 1;
   flex-direction: row;
   position: absolute;
   width: 100%;
@@ -186,9 +199,18 @@ const SendMsg = styled.textarea`
   outline: none;
   background-color: transparent;
   font-size: 14px;
-  padding: 0 10px;
+  margin-left: 20px;
+  right: 0;
+  resize: none;
+`;
+
+const EmojiIcon = styled.div`
   display: flex;
   align-items: center;
+  width: 7%;
+  justify-content: space-between;
+  margin-left: 20px;
+  margin-right: 15px;
 `;
 
 export default SideBox;
