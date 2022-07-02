@@ -5,6 +5,7 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import { Search } from "@mui/icons-material";
 import Threads from "./Threads";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
+import AttachmentOutlinedIcon from "@mui/icons-material/AttachmentOutlined";
 
 function SideBox() {
   return (
@@ -33,12 +34,24 @@ function SideBox() {
         </User__info__Header>
         <ChatBox>
           <ChatArea></ChatArea>
-          <ChatFoot></ChatFoot>
+          <ChatFoot>
+            <AttachIcon>
+              <AttachmentOutlinedIcon />
+            </AttachIcon>
+            <AttachIcon>
+              <SendMsg placeholder="Type a message..." />
+            </AttachIcon>
+          </ChatFoot>
         </ChatBox>
       </RightContainer>
     </Container>
   );
 }
+
+const AttachIcon = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
 const Threads__Box = styled.div`
   margin-top: 60px;
@@ -164,6 +177,18 @@ const ChatFoot = styled.div`
   right: 0;
   background-color: var(--background-color);
   padding: 0 20px;
+`;
+
+const SendMsg = styled.textarea`
+  width: 100%;
+  height: 50%;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 14px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
 `;
 
 export default SideBox;
