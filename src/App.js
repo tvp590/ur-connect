@@ -6,13 +6,13 @@ import Home from "./components/Home";
 import styled from "styled-components";
 // import Chat from "./junk/Chat";
 import Gram from "./chatSystem/Gram";
+import Profile from "./ProfilePage/Profile";
 
 function App() {
   return (
     <div className="App">
-      <Gram />
-      {/* <Header />
-      <Home /> */}
+      <Header />
+      <Profile />
     </div>
   );
 }

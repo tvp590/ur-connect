@@ -1,8 +1,8 @@
 :root{
-    --background-color: #282e33;
-    --bg-hover : #353c43;
-    --search-bg : #3d444b;
-    --text-color: white;
+    --background-color: white  ;
+    --bg-hover : lightgrey;
+    --search-bg : lightgrey;
+    --text-color: black;
     --text2-color: grey;
 
 }
