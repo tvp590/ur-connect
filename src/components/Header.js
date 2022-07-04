@@ -21,10 +21,10 @@ function Header() {
         <Searchbar>
           <SearchbarInput type="text" placeholder="Search" />
         </Searchbar>
-        <a href="#">
+        <a href="/">
           <HomeI />
         </a>
-        <a href="#">
+        <a href="/chat">
           <ChatI />
         </a>
         <a href="#">

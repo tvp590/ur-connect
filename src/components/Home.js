@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Post from "./Post";
 import Suggestion from "./RightBoxSugg/Suggestion";
-// import LightSpeed from "react-reveal/LightSpeed";
+import Header from "./Header";
 import Slide from "react-reveal/Slide";
 import JSONDATA from "../MOCK_DATA.json";
 // import { db } from "./firebase";
@@ -26,6 +26,7 @@ function Home() {
 
   return (
     <Wrap>
+      <Header />
       <Slide left>
         <HomeContainer>
           {JSONDATA.map((post) => (

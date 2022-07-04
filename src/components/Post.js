@@ -6,10 +6,12 @@ function Post({ username, imageURL, caption }) {
   return (
     <Container>
       <First__component>
-        <User__Avatar src="/post1.png" alt="Devansh" />
-        <User__name>
-          <h3>{username}</h3>
-        </User__name>
+        <a href="/profile">
+          <User__Avatar src="/post1.png" alt="Devansh" />
+          <User__name>
+            <h3>{username}</h3>
+          </User__name>
+        </a>
       </First__component>
 
       <Second__component>
@@ -34,9 +36,11 @@ const Container = styled.div`
 `;
 
 const First__component = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 10px;
+  & > a {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+  }
 `;
 
 const User__Avatar = styled(Avatar)`

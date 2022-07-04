@@ -6,10 +6,12 @@ function Profilelist() {
   return (
     <Main>
       <Profile>
-        <User__Avatar src="/post1.png" alt="Devansh" />
+        <a href="/profile">
+          <User__Avatar src="/post1.png" alt="Devansh" />
+        </a>
         <Wrapper>
-          <User__name>
-            <h5>Devansh</h5>
+          <User__name href="/profile">
+            <h3>Devansh</h3>
           </User__name>
           <span>Follows you</span>
         </Wrapper>
@@ -42,7 +44,7 @@ const User__Avatar = styled(Avatar)`
   margin-right: 10px;
 `;
 
-const User__name = styled.div``;
+const User__name = styled.a``;
 
 const Wrapper = styled.div`
   span {
