@@ -9,7 +9,7 @@ import ForumIcon from "@mui/icons-material/Forum";
 function Header() {
   return (
     <Container>
-      <a>
+      <a href="/">
         <Logo src="/logotest2.svg" alt="UR Connect" />
       </a>
       {/* 

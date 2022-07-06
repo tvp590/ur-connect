@@ -10,6 +10,7 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { Avatar } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import RightBox from "./RightBox";
+import ClearIcon from "@mui/icons-material/Clear";
 
 function SideBox() {
   const [burgerStat, setStat] = React.useState(false);
@@ -17,26 +18,43 @@ function SideBox() {
   return (
     <Container>
       <BurgerMenu show={burgerStat}>
-        <Me>
-          <MyAvatar src="/avatar.jpg" alt="avatar" />
-          <h3>Devansh</h3>
-        </Me>
-        <li>
-          <GroupIcon />
-          <a href="#">New Group</a>
-        </li>
-        <li>
-          <BookmarkAddIcon />
-          <a href="#">Saved Messages</a>
-        </li>
-        <li>
-          <SettingsIcon />
-          <a href="#">Setting</a>
-        </li>
-        <li>
-          <DarkModeIcon onClick={() => setStat(false)} />
-          <a href="#">Dark Mode</a>
-        </li>
+        <Wrapper>
+          <Me>
+            <MyAvatar src="/pp1.jpg" alt="avatar" />
+            <h3>Mark</h3>
+          </Me>
+          <div>
+            <IconButton onClick={() => setStat(false)}>
+              <ClearIcon />
+            </IconButton>
+          </div>
+        </Wrapper>
+        <Menu>
+          <Option onClick={""}>
+            <li>
+              <GroupIcon />
+              <p>New Group</p>
+            </li>
+          </Option>
+          <Option>
+            <li>
+              <BookmarkAddIcon />
+              <p href="#">Saved Messages</p>
+            </li>
+          </Option>
+          <Option>
+            <li>
+              <SettingsIcon />
+              <p href="#">Setting</p>
+            </li>
+          </Option>
+          <Option>
+            <li>
+              <DarkModeIcon />
+              <p href="#">Dark Mode</p>
+            </li>
+          </Option>
+        </Menu>
       </BurgerMenu>
       <LeftContainer>
         <Search__Header>
@@ -48,6 +66,35 @@ function SideBox() {
         <Threads__Box>
           <Threads />
           <Threads />
+          <Threads />
+          <Threads />
+          <Threads />
+          <Threads />
+          <Threads />
+          <Threads />
+          <Threads />
+          <Threads />
+          <Threads />
+          <Threads />
+          <Threads />
+          <Threads />
+          <Threads />
+          <Threads />
+          <Threads />
+          <Threads />
+          <Threads />
+          <Threads />
+          <Threads />
+          <Threads />
+          <Threads />
+          <Threads />
+          <Threads />
+          <Threads />
+          <Threads />
+          <Threads />
+          <Threads />
+          <Threads />
+          <Threads />
         </Threads__Box>
       </LeftContainer>
       <RightBox />
@@ -57,6 +104,11 @@ function SideBox() {
 
 const Threads__Box = styled.div`
   margin-top: 60px;
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
 `;
 
 const Container = styled.div``;
@@ -103,9 +155,13 @@ const Search__input = styled.input`
   background-color: transparent;
   font-size: 14px;
   padding: 0 10px;
-  background-color: var(--search-bg);
+  background-color: var(--background-color);
   border-radius: 5px;
   color: var(--text-color);
+
+  &:focus {
+    background-color: var(--search-bg);
+  }
 `;
 
 const BurgerMenu = styled.div`
@@ -123,14 +179,37 @@ const BurgerMenu = styled.div`
 
   transform: ${(props) => (props.show ? "translateX(0)" : "translateX(-100%)")};
   transition: transform 0.3s ease-in-out;
+`;
+
+const Menu = styled.div`
+  margin-top: 20px;
+`;
+
+const Option = styled.div`
+  border-radius: 5px;
+  &:hover {
+    background-color: var(--bg-hover);
+    cursor: pointer;
+  }
   li {
     padding: 15px 0;
     display: flex;
-    align-items: center;
-    a {
+    align-items: center; }
+    p {
       color: var(--text-color);
+      margin-left: 10px;
     }
   }
+`;
+
+// const CrossIcon = styled(ClearIcon)`
+//   cursor: pointer;
+// `;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 const Me = styled.div`

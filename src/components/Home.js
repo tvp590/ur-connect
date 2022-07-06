@@ -53,11 +53,12 @@ const RightBox = styled.div`
 
 const Wrap = styled.div`
   display: flex;
+  flex-direction: row;
+  justify-content: center;
 `;
 
 const HomeContainer = styled.div`
   margin-top: 100px;
-  margin-left: 300px;
   width: 500px;
 `;
 

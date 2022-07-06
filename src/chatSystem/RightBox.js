@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import AttachmentOutlinedIcon from "@mui/icons-material/AttachmentOutlined";
 import EmojiEmotionsOutlinedIcon from "@mui/icons-material/EmojiEmotionsOutlined";
 import SendIcon from "@mui/icons-material/Send";
+import ClearIcon from "@mui/icons-material/Clear";
+import { Button, IconButton } from "@mui/material";
 
 function RightBox() {
   return (
@@ -14,22 +15,32 @@ function RightBox() {
             <h3>username</h3>
             <p> last seen or number of members if group </p>
           </div>
-          <ThreeDotMenu>
-            <MoreVertOutlinedIcon />
+          <ThreeDotMenu href="javascript:history.back()">
+            <ClearIcon />
           </ThreeDotMenu>
         </User__info__Header>
         <ChatBox>
-          <ChatArea></ChatArea>
+          <ChatArea>
+            <Mychat></Mychat>
+          </ChatArea>
           <ChatFoot>
             <AttachIcon>
-              <AttachmentOutlinedIcon />
+              <IconButton>
+                <AttachmentOutlinedIcon />
+                <input type="file" style={{ display: "none" }} />
+              </IconButton>
             </AttachIcon>
             <TypeMsg>
               <SendMsg placeholder="Type a message..." />
             </TypeMsg>
             <EmojiIcon>
-              <EmojiEmotionsOutlinedIcon />
-              <SendIcon />
+              <IconButton>
+                <EmojiEmotionsOutlinedIcon />
+              </IconButton>
+
+              <IconButton>
+                <SendIcon />
+              </IconButton>
             </EmojiIcon>
           </ChatFoot>
         </ChatBox>
@@ -76,7 +87,7 @@ const User__info__Header = styled.div`
   }
 `;
 
-const ThreeDotMenu = styled.button`
+const ThreeDotMenu = styled.a`
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -102,6 +113,10 @@ const ChatBox = styled.div`
 
 const ChatArea = styled.div``;
 
+const Mychat = styled.div`
+  display: flex;
+  `;
+
 const ChatFoot = styled.div`
   display: flex;
   flex: 1;
@@ -112,7 +127,6 @@ const ChatFoot = styled.div`
   bottom: 0;
   right: 0;
   background-color: var(--background-color);
-  padding: 0 20px;
 `;
 
 const SendMsg = styled.textarea`
@@ -122,15 +136,20 @@ const SendMsg = styled.textarea`
   outline: none;
   background-color: transparent;
   font-size: 14px;
-  margin-left: 20px;
   right: 0;
   resize: none;
   color: var(--text-color);
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
 `;
 
 const AttachIcon = styled.div`
   display: flex;
   align-items: center;
+  margin-left: 10px;
+  margin-right: 10px;
 `;
 
 const TypeMsg = styled.div`
