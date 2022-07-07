@@ -1,5 +1,8 @@
 import React from "react";
 import "./App.css";
+import Login from "./LoginPages/Login";
+// import Signup from "./SignUp/Signup";
+import { AuthProvider } from "./context/AuthContext";
 import Header from "./components/Header";
 import Post from "./components/Post";
 import Home from "./components/Home";
@@ -12,13 +15,18 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
   return (
     <BrowserRouter>
-      <AppContainer>
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/chat" element={<Gram />} />
-          <Route exact path="/profile" element={<Profile />} />
-        </Routes>
-      </AppContainer>
+      <AuthProvider>
+        <AppContainer>
+          <Routes>
+            <Route exact path="/" element={<Login />} />
+
+            <Route exact path="/Home" element={<Home />} />
+            {/* <Route exact path="/Signup" element={<Signup />} /> */}
+            <Route exact path="/chat" element={<Gram />} />
+            <Route exact path="/Profile" element={<Profile />} />
+          </Routes>
+        </AppContainer>
+      </AuthProvider>
     </BrowserRouter>
   );
 }

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Header from "../components/Header";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 function Pic() {
   const navigate = useNavigate();
@@ -11,14 +12,17 @@ function Pic() {
     navigate("/chat");
   };
 
+  const { currentUser } = useAuth();
+  console.log(currentUser);
+
   return (
     <Wrap>
       <Header />
       <Container>
-        <Pic__img src="./pp1.jpg" alt="profile pic" />
+        <Pic__img src={currentUser.photoURL} alt="profile pic" />
         <BioContainer>
           <User__name>
-            <h1>User__name</h1>
+            <h1>{currentUser.displayName}</h1>
             <ButtonsInProfile>Follow</ButtonsInProfile>
 
             <ButtonsInProfile onClick={handleClick}>Message</ButtonsInProfile>

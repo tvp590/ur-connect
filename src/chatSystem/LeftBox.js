@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import "./Global.css";
+import "../Global.css";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import Threads from "./Threads";
 import GroupIcon from "@mui/icons-material/Group";
@@ -11,17 +11,23 @@ import { Avatar } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import RightBox from "./RightBox";
 import ClearIcon from "@mui/icons-material/Clear";
+import { useAuth } from "../context/AuthContext";
 
 function LeftBox() {
   const [burgerStat, setStat] = React.useState(false);
+
+  const { currentUser } = useAuth();
 
   return (
     <Container>
       <BurgerMenu show={burgerStat}>
         <Wrapper>
           <Me>
-            <MyAvatar src="/pp1.jpg" alt="avatar" />
-            <h3>Mark</h3>
+            <MyAvatar
+              src={currentUser.photoURL || "/defaultAvatar.png"}
+              alt="avatar"
+            />
+            <h3>{currentUser.displayName}</h3>
           </Me>
           <div>
             <IconButton onClick={() => setStat(false)}>

@@ -5,11 +5,25 @@ import HomeIcon from "@mui/icons-material/Home";
 import SendIcon from "@mui/icons-material/Send";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import ForumIcon from "@mui/icons-material/Forum";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
+  const { currentUser, signout } = useAuth();
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    try {
+      await signout();
+      // setDisplayname("");
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Container>
-      <a href="/">
+      <a href="/Home">
         <Logo src="/logotest2.svg" alt="UR Connect" />
       </a>
       {/* 
@@ -21,7 +35,7 @@ function Header() {
         <Searchbar>
           <SearchbarInput type="text" placeholder="Search" />
         </Searchbar>
-        <a href="/">
+        <a href="/Home">
           <HomeI />
         </a>
         <a href="/chat">
@@ -33,7 +47,8 @@ function Header() {
         <a href="#">
           <QandA />
         </a>
-        <ProfileMenu />
+        <ProfileMenu onClick={handleLogout} />
+        {/* logout button for now */}
       </Menu>
     </Container>
   );
