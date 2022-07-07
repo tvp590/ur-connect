@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import SideBox from "./SideBox";
+import LeftBox from "./LeftBox";
 
 function Gram() {
   return (
     <div>
-      <SideBox />
+      <LeftBox />
     </div>
   );
 }

@@ -12,7 +12,7 @@ import IconButton from "@mui/material/IconButton";
 import RightBox from "./RightBox";
 import ClearIcon from "@mui/icons-material/Clear";
 
-function SideBox() {
+function LeftBox() {
   const [burgerStat, setStat] = React.useState(false);
 
   return (
@@ -236,4 +236,4 @@ const MyAvatar = styled(Avatar)`
   margin-left: 10px;
 `;
 
-export default SideBox;
+export default LeftBox;
