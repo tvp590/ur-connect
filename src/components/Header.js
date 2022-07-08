@@ -44,7 +44,7 @@ function Header() {
         <a href="#">
           <NewPost />
         </a>
-        <a href="#">
+        <a href="/Questionnaires">
           <QandA />
         </a>
         <ProfileMenu onClick={handleLogout} />

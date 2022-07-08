@@ -11,6 +11,8 @@ import styled from "styled-components";
 import Gram from "./chatSystem/Gram";
 import Profile from "./ProfilePage/Profile";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Signup from "./Signuppage/Signup";
+import Questionnaire from "./QuestionAnswer/Questionnaire";
 
 function App() {
   return (
@@ -21,8 +23,9 @@ function App() {
             <Route exact path="/" element={<Login />} />
 
             <Route exact path="/Home" element={<Home />} />
-            {/* <Route exact path="/Signup" element={<Signup />} /> */}
+            <Route exact path="/Signup" element={<Signup />} />
             <Route exact path="/chat" element={<Gram />} />
+            <Route exact path="/Questionnaires" element={<Questionnaire />} />
             <Route exact path="/Profile" element={<Profile />} />
           </Routes>
         </AppContainer>

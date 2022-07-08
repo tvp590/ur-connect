@@ -1,0 +1,174 @@
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+.logoclass{
+	width: 70%;
+	height :30%;
+}
+
+body {
+	
+	/* background-image: url('picture.jpg');
+	background-repeat: no-repeat;
+	background-size: cover; */
+	
+	background-color: #eee;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	font-family: 'Montserrat', sans-serif;
+	height: 100vh;
+	margin: -20px 0 50px;
+}
+
+
+h1 {
+	font-weight: bold;
+	margin: 0;
+}
+
+h2 {
+	text-align: center;
+}
+
+p {
+	font-size: 14px;
+	font-weight: 200; /*100*/
+	line-height: 20px;
+	letter-spacing: 0.5px;
+	margin: 20px 0 30px;
+    display: block;
+
+}
+
+
+button {
+	border-radius: 20px;
+	border: 1px solid #e6b905;
+	background: linear-gradient(to right,#ffcc00, #a08001);
+	color: #080707;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 85ms ease-in;
+}
+
+button:active {
+	transform: scale(0.95);
+}
+
+button:focus {
+	outline: none;
+}
+
+button.hidden {
+	background-color: transparent;
+	border-color: white;
+}
+
+.main_container {
+	background-color: #fff;
+	/*border: 5px solid black;*/
+	border-radius: 10px;
+  	box-shadow: 0 14px 28px rgba(0,0,0,0.35), 
+				0 10px 10px rgba(0,0,0,0.35);
+	
+	position: relative;
+	overflow: hidden;
+	
+	width: 768px;
+	max-width: 100%;
+	min-height: 480px;
+	
+}
+
+form {
+	background-color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0 50px;
+	height: 100%;
+	flex-direction: column;
+	text-align: center;
+}
+
+input {
+	background-color: #eee;
+	border: none;
+	width: 100%;
+	margin: 8px 0;
+	padding: 12px 15px;
+}
+
+.form-class {
+	position: absolute;
+	top: 0;
+	height: 100%;
+	transition: all 0.5s ease-in-out;
+}
+
+
+.sign-up-class {
+	right: 0;
+	width: 50%;
+} 
+
+
+
+/* overlay-container == overlay-box  */
+.overlay-box {
+	position: absolute;
+	top: 0;
+    left: 0;
+	width: 50%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.overlay {
+	 background: #e6b905; 
+	background: linear-gradient(to right, #e6b905, #ffeb13); 
+	background-size: cover;
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	color: #070202bd;
+	position: relative;
+	
+	height: 100%;
+	width: 200%;
+}
+
+.overlay-window {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	text-align: center;
+	justify-content: center;
+    color: #080707;
+	flex-direction: column;
+	padding: 0 40px;
+	top: 0;
+   
+	height: 100%;
+	width: 40%;
+}
+
+ .overlay-left-side {
+	left:50%;
+}
+
+.errorClass{
+	color: red;
+	text-align: center;
+	justify-content: center;
+	background-color: #ffbebe;
+	border: 1px solid #ff0000;
+	width: 100%;
+	margin: 5px 0;
+	padding: 10px 12px;
+	font-weight: 200;
+}
