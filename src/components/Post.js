@@ -32,7 +32,8 @@ const Container = styled.div`
   max-width: 600px;
   border: 1px solid lightgrey;
   border-radius: 4px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  background-color: white;
 `;
 
 const First__component = styled.div`

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import HomeIcon from "@mui/icons-material/Home";
@@ -7,6 +7,8 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import ForumIcon from "@mui/icons-material/Forum";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import Modal from "@mui/material/Modal";
+import JSONDATA from "../MOCK_DATA.json";
 
 function Header() {
   const { currentUser, signout } = useAuth();
@@ -14,47 +16,116 @@ function Header() {
   const handleLogout = async () => {
     try {
       await signout();
-      // setDisplayname("");
       navigate("/");
     } catch (error) {
       console.log(error);
     }
   };
 
-  return (
-    <Container>
-      <a href="/Home">
-        <Logo src="/logotest2.svg" alt="UR Connect" />
-      </a>
-      {/* 
-      <Searchbar>
-        <SearchbarInput type="text" placeholder="Search" />
-      </Searchbar> */}
+  // const [isOpen, setIsOpen] = useState(false);
+  // function handleOpen() {
+  //   setIsOpen(true);
+  // }
+  // function handleClose() {
+  //   setIsOpen(false);
+  // }
 
-      <Menu>
-        <Searchbar>
-          <SearchbarInput type="text" placeholder="Search" />
-        </Searchbar>
+  const [value, setValue] = useState("");
+
+  const onChange = (event) => {
+    setValue(event.target.value);
+  };
+
+  const onSearch = (searchTerm) => {
+    navigate(`/Home/${searchTerm}`);
+  };
+
+  return (
+    <div>
+      <Container>
         <a href="/Home">
-          <HomeI />
+          <Logo src="/logotest2.svg" alt="UR Connect" />
         </a>
-        <a href="/chat">
-          <ChatI />
-        </a>
-        <a href="#">
-          <NewPost />
-        </a>
-        <a href="/Questionnaires">
-          <QandA />
-        </a>
-        <ProfileMenu onClick={handleLogout} />
-        {/* logout button for now */}
-      </Menu>
-    </Container>
+
+        <Menu>
+          <Searchbar>
+            <SearchbarInput
+              type="text"
+              placeholder="Search"
+              value={value}
+              onChange={onChange}
+            />
+            <Dropdown>
+              {JSONDATA.filter((item) => {
+                const searchTerm = value.toLowerCase();
+                const Name = item.username.toLowerCase();
+
+                return searchTerm && Name.startsWith(searchTerm);
+              }).map((item) => (
+                <DropdownItem onClick={() => onSearch(item.username)}>
+                  {item.username}
+                </DropdownItem>
+              ))}
+            </Dropdown>
+
+            {/* <CustomModal
+            disableAutoFocus
+            hideBackdrop={true}
+            open={isOpen}
+            onClose={() => setIsOpen(false)}
+          >
+            <div>
+              <h2>Type to Search</h2>
+            </div>
+          </CustomModal> */}
+          </Searchbar>
+          <a href="/Home">
+            <HomeI />
+          </a>
+          <a href="/chat">
+            <ChatI />
+          </a>
+          <a href="#">
+            <NewPost />
+          </a>
+          <a href="/Questionnaires">
+            <QandA />
+          </a>
+          <ProfileMenu onClick={handleLogout} />
+          {/* logout button for now */}
+        </Menu>
+      </Container>
+    </div>
   );
 }
 
 export default Header;
+
+const Dropdown = styled.div``;
+
+const DropdownItem = styled.div`
+  cursor: pointer;
+  &:hover {
+    background-color: lightgray;
+  }
+`;
+
+const CustomModal = styled(Modal)`
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  width: 250px;
+
+  height: 50%;
+  margin-left: 64.5%;
+  z-index: 0;
+  margin-top: 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
 
 const Container = styled.div`
   justify-content: space-between;
@@ -67,7 +138,7 @@ const Container = styled.div`
   top: 0;
   left: 0;
   right: 0;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
   background-color: white;
   z-index: 1;
 `;
@@ -108,6 +179,9 @@ const SearchbarInput = styled.input`
   outline: none;
   padding: 10px;
   font-size: 14px;
+  &:focus {
+    margin-right: 20px;
+  }
 `;
 
 const HomeI = styled(HomeIcon)``;

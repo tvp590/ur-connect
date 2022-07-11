@@ -55,6 +55,7 @@ const Wrap = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  background-color: lightgrey;
 `;
 
 const HomeContainer = styled.div`

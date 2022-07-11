@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
 import React from "react";
 import { useAuth } from "../context/AuthContext";
@@ -65,9 +65,18 @@ function Login() {
                 autoComplete="off"
                 ref={passwordref}
               />
-              {error && <ErrorClass>{error}</ErrorClass>}
-              <a href="#">Forgot your password?</a>
+              {(error && <ErrorClass>{error}</ErrorClass>) || (
+                <ErrorClass>
+                  <br />
+                </ErrorClass>
+              )}
+
               <button disabled={Wait}>Sign In</button>
+              <LoginAndForgotPassword>
+                <p>
+                  <Link to={"/forgot"}>Forgot password?</Link>{" "}
+                </p>
+              </LoginAndForgotPassword>
             </Left__overlay>
           </Left__Overlay__container>
         </SigninForm>
@@ -248,6 +257,19 @@ const Left__overlay = styled.form`
 
   button:disabled {
     background-color: #aaa1a1;
+  }
+`;
+
+const LoginAndForgotPassword = styled.div`
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  p {
+    font-size: 12px;
+    margin-top: 35px;
   }
 `;
 

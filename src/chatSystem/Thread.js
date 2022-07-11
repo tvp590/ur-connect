@@ -1,55 +1,73 @@
 import React from "react";
 import styled from "styled-components";
+import ClearIcon from "@mui/icons-material/Clear";
+import { useParams } from "react-router-dom";
+import JSONDATA from "../MOCK_DATA.json";
+import LeftBox from "./LeftBox";
 import AttachmentOutlinedIcon from "@mui/icons-material/AttachmentOutlined";
 import EmojiEmotionsOutlinedIcon from "@mui/icons-material/EmojiEmotionsOutlined";
 import SendIcon from "@mui/icons-material/Send";
-import ClearIcon from "@mui/icons-material/Clear";
+
 import { Button, IconButton } from "@mui/material";
 
-function RightBox() {
+function Thread() {
+  const { id } = useParams();
+  const user = JSONDATA.find((item) => item.username === id);
   return (
     <div>
-      <RightContainer>
+      <LeftBox />
+      <Container>
         <User__info__Header>
           <div>
-            <h3>username</h3>
+            <h3>{user.username}</h3>
             <p> last seen or number of members if group </p>
           </div>
-          <ThreeDotMenu href="javascript:history.back()">
+          <ThreeDotMenu href="/Home">
             <ClearIcon />
           </ThreeDotMenu>
         </User__info__Header>
         <ChatBox>
-          <ChatArea>
-            <Mychat></Mychat>
-          </ChatArea>
-          <ChatFoot>
-            <AttachIcon>
-              <IconButton>
-                <AttachmentOutlinedIcon />
-                <input type="file" style={{ display: "none" }} />
-              </IconButton>
-            </AttachIcon>
-            <TypeMsg>
-              <SendMsg placeholder="Type a message..." />
-            </TypeMsg>
-            <EmojiIcon>
-              <IconButton>
-                <EmojiEmotionsOutlinedIcon />
-              </IconButton>
-
-              <IconButton>
-                <SendIcon />
-              </IconButton>
-            </EmojiIcon>
-          </ChatFoot>
+          <ChatArea></ChatArea>
         </ChatBox>
-      </RightContainer>
+        <ChatFoot>
+          <AttachIcon>
+            <input
+              accept="image/*"
+              id="icon-button-file"
+              type="file"
+              style={{ display: "none" }}
+            />
+            <label htmlFor="icon-button-file">
+              <IconButton
+                color="primary"
+                aria-label="upload picture"
+                component="span"
+              >
+                <AttachmentOutlinedIcon />
+              </IconButton>
+            </label>
+          </AttachIcon>
+          <TypeMsg>
+            <TextArea placeholder="Type a message...">{}</TextArea>
+          </TypeMsg>
+          <EmojiIcon>
+            <IconButton>
+              <EmojiEmotionsOutlinedIcon />
+            </IconButton>
+
+            <IconButton>
+              <SubmitMsg>
+                <SendIcon />
+              </SubmitMsg>
+            </IconButton>
+          </EmojiIcon>
+        </ChatFoot>
+      </Container>
     </div>
   );
 }
 
-const RightContainer = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -76,7 +94,7 @@ const User__info__Header = styled.div`
   height: 60px;
   top: 0;
   right: 0;
-  z-index: 2;
+  z-index: 1;
   background-color: var(--background-color);
   padding: 0 20px;
 
@@ -108,14 +126,16 @@ const ChatBox = styled.div`
   bottom: 0;
   right: 0;
 
-  z-index: -1;
+  z-index: 0;
+`;
+
+const SubmitMsg = styled.button`
+  border: none;
+  outline: none;
+  background-color: transparent;
 `;
 
 const ChatArea = styled.div``;
-
-const Mychat = styled.div`
-  display: flex;
-  `;
 
 const ChatFoot = styled.div`
   display: flex;
@@ -129,7 +149,7 @@ const ChatFoot = styled.div`
   background-color: var(--background-color);
 `;
 
-const SendMsg = styled.textarea`
+const TextArea = styled.textarea`
   width: 100%;
   height: 50%;
   border: none;
@@ -167,4 +187,4 @@ const EmojiIcon = styled.div`
   margin-right: 15px;
 `;
 
-export default RightBox;
+export default Thread;

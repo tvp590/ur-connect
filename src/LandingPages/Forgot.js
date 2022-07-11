@@ -1,69 +1,21 @@
 import React from "react";
-// import "./Signup.css";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
-import { useRef, useState } from "react";
 import styled from "styled-components";
+import { useRef, useState } from "react";
 
-export default function Signup() {
+function Forgot() {
   const navigate = useNavigate();
-  const nameref = useRef();
-
-  const emailref = useRef();
-  const passwordref = useRef();
-  const Confirmpasswordref = useRef();
-  const formref = useRef();
-
-  const [error, setError] = useState("");
-  const [Wait, SetWait] = useState(false);
-  const [img, setImg] = useState();
-
-  const { signup } = useAuth();
 
   async function submithandler(event) {
     event.preventDefault();
-
-    if (
-      emailref.current.value === "" &&
-      passwordref.current.value === "" &&
-      nameref.current.value === "" &&
-      Confirmpasswordref.current.value === ""
-    ) {
-      return setError("Please fill all the field ");
-    } else if (
-      emailref.current.value.search(/^[a-zA-Z]{3}[0-9]{3}@uregina.ca$/)
-    ) {
-      return setError("Wrong Email format. Abc123@uregina.ca");
-    } else if (passwordref.current.value.length < 6) {
-      return setError(" Password should be atleast 6 digits ");
-    } else if (passwordref.current.value !== Confirmpasswordref.current.value) {
-      return setError("Passwords do not match");
-    }
-
-    try {
-      setError("");
-      SetWait(true);
-
-      await signup(
-        emailref.current.value,
-        passwordref.current.value,
-        nameref.current.value,
-        img
-      );
-
-      emailref.current.value = "";
-      passwordref.current.value = "";
-      nameref.current.value = "";
-      Confirmpasswordref.current.value = "";
-
-      navigate("/Home");
-    } catch (error) {
-      console.log(error);
-      setError("failed to create an account");
-    }
-
-    SetWait(false);
   }
+
+  const formref = useRef();
+  const emailref = useRef();
+  const newpasswordref = useRef();
+  const Confirmpasswordref = useRef();
+
+  const [error, setError] = useState("");
 
   return (
     <Wrapper>
@@ -92,40 +44,34 @@ export default function Signup() {
               onSubmit={submithandler}
               ref={formref}
             >
-              <h1>Create Account</h1>
+              <h1>Forgot Password?</h1>
               {/* {error && <ErrorClass>{error}</ErrorClass>} */}
-              <input
-                type="text"
-                placeholder="Name"
-                autoComplete="off"
-                ref={nameref}
-              />
-              <input
-                type="file"
-                placeholder=" Upload profile picture"
-                autoComplete="off"
-                onChange={(e) => setImg(e.currentTarget.files[0])}
-              />
+
               <input
                 type="email"
                 placeholder="Student Email"
                 autoComplete="off"
                 ref={emailref}
               />
-              <input
+              {/* <input
                 type="password"
-                placeholder="Password"
+                placeholder="New Password"
                 autoComplete="off"
-                ref={passwordref}
+                ref={newpasswordref}
               />
               <input
                 type="password"
                 placeholder="Confirm Password"
                 autoComplete="off"
                 ref={Confirmpasswordref}
-              />
-              {error && <ErrorClass>{error}</ErrorClass>}
-              <button disabled={Wait}>Sign Up</button>
+              /> */}
+              {(error && <ErrorClass>{error}</ErrorClass>) || (
+                <ErrorClass>
+                  <br />
+                </ErrorClass>
+              )}
+              <button>Send OTP</button>
+              {/* add Wait function to disable button */}
             </Right__overlay>
           </Right__Overlay__container>
         </SignupForm>
@@ -294,3 +240,5 @@ const ErrorClass = styled.p`
 
   font-weight: 200;
 `;
+
+export default Forgot;

@@ -5,7 +5,7 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
-function Pic() {
+function Pic({ username, profilePicture }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -19,10 +19,10 @@ function Pic() {
     <Wrap>
       <Header />
       <Container>
-        <Pic__img src={currentUser.photoURL} alt="profile pic" />
+        <Pic__img src={profilePicture} alt="profile pic" />
         <BioContainer>
           <User__name>
-            <h1>{currentUser.displayName}</h1>
+            <h1>{username}</h1>
             <ButtonsInProfile>Follow</ButtonsInProfile>
 
             <ButtonsInProfile onClick={handleClick}>Message</ButtonsInProfile>

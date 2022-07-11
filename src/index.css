@@ -4,6 +4,7 @@
   color: #393c41;
   margin: 0;
   padding: 0;
+  -ms-overflow-style: none;
   }
   
   body {
@@ -14,6 +15,10 @@
   a{
   text-decoration: none;
   
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
   }
   
   /* @keyframes animateDown {

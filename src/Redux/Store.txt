@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import questionreducer from "./QSlice";
+import questionreducer from "../app/QSlice";
 
 export default configureStore({
   reducer: {

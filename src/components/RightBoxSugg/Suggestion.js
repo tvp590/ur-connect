@@ -31,13 +31,15 @@ function Suggestion() {
 const Wrap = styled.div`
   margin-top: 100px;
   margin-left: 50px;
-  width: 100%;
-  // border: 1px solid lightgrey;
+  width: 70%;
+  background-color: white;
   border-radius: 4px;
+  padding: 20px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 `;
 
 const MainBox = styled.div`
-  width: 70%;
+  width: 100%;
   p {
     margin-top: 15px;
   }

@@ -2,21 +2,29 @@ import React from "react";
 import styled from "styled-components";
 import "../Global.css";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import Threads from "./Threads";
+import LeftBoxThreads from "./LeftBoxThreads";
 import GroupIcon from "@mui/icons-material/Group";
 import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
 import SettingsIcon from "@mui/icons-material/Settings";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { Avatar } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
-import RightBox from "./RightBox";
+
 import ClearIcon from "@mui/icons-material/Clear";
 import { useAuth } from "../context/AuthContext";
+import Thread from "./Thread";
+import JSONDATA from "../MOCK_DATA.json";
+import { useNavigate } from "react-router-dom";
 
 function LeftBox() {
   const [burgerStat, setStat] = React.useState(false);
 
   const { currentUser } = useAuth();
+  const navigate = useNavigate();
+
+  const onThreadClick = (threadUsername) => {
+    navigate(`/chat/${threadUsername}`);
+  };
 
   return (
     <Container>
@@ -62,6 +70,7 @@ function LeftBox() {
           </Option>
         </Menu>
       </BurgerMenu>
+
       <LeftContainer>
         <Search__Header>
           <Hamburger>
@@ -70,43 +79,30 @@ function LeftBox() {
           <Search__input type="text" placeholder="Search" />
         </Search__Header>
         <Threads__Box>
-          <Threads />
-          <Threads />
-          <Threads />
-          <Threads />
-          <Threads />
-          <Threads />
-          <Threads />
-          <Threads />
-          <Threads />
-          <Threads />
-          <Threads />
-          <Threads />
-          <Threads />
-          <Threads />
-          <Threads />
-          <Threads />
-          <Threads />
-          <Threads />
-          <Threads />
-          <Threads />
-          <Threads />
-          <Threads />
-          <Threads />
-          <Threads />
-          <Threads />
-          <Threads />
-          <Threads />
-          <Threads />
-          <Threads />
-          <Threads />
-          <Threads />
+          {JSONDATA.map((item) => (
+            <LeftBoxThreads username={item.username} photoURL={item.imageURL} />
+          ))}
         </Threads__Box>
       </LeftContainer>
-      <RightBox />
+
+      <RightContMsg>
+        <div>
+          <p>Select a chat to start messaging</p>
+        </div>
+      </RightContMsg>
     </Container>
   );
 }
+
+const RightContMsg = styled.p`
+  margin-left: 25%;
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+  }
+`;
 
 const Threads__Box = styled.div`
   margin-top: 60px;
@@ -117,7 +113,10 @@ const Threads__Box = styled.div`
   }
 `;
 
-const Container = styled.div``;
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 
 const LeftContainer = styled.div`
   display: flex;
@@ -186,6 +185,11 @@ const BurgerMenu = styled.div`
   transform: ${(props) => (props.show ? "translateX(0)" : "translateX(-100%)")};
   transition: transform 0.3s ease-in-out;
 `;
+
+// const LeftBox__Thread__Container = styled.div`
+//   display: flex;
+//   flex-direction: row;
+// `;
 
 const Menu = styled.div`
   margin-top: 20px;
