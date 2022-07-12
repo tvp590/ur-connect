@@ -1,17 +1,24 @@
 import React from "react";
 import styled from "styled-components";
 import { Avatar } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function Post({ username, imageURL, caption }) {
+  const navigate = useNavigate();
+
+  const onThreadClick = (thread) => {
+    navigate(`/Home/${thread}`);
+  };
+
   return (
     <Container>
       <First__component>
-        <a href="/profile">
+        <div onClick={() => onThreadClick(username)}>
           <User__Avatar src="/post1.png" alt="Devansh" />
           <User__name>
             <h3>{username}</h3>
           </User__name>
-        </a>
+        </div>
       </First__component>
 
       <Second__component>
@@ -37,10 +44,11 @@ const Container = styled.div`
 `;
 
 const First__component = styled.div`
-  & > a {
+  & > div {
     display: flex;
     align-items: center;
     padding: 10px;
+    cursor: pointer;
   }
 `;
 

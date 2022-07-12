@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import "../Global.css";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
@@ -9,10 +9,20 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { Avatar } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
+import firebase from "firebase/compat/app";
+
+import db from "../firebase";
+import {
+  collection,
+  query,
+  where,
+  onSnapshot,
+  orderBy,
+  addDoc,
+} from "firebase/firestore";
 
 import ClearIcon from "@mui/icons-material/Clear";
 import { useAuth } from "../context/AuthContext";
-import Thread from "./Thread";
 import JSONDATA from "../MOCK_DATA.json";
 import { useNavigate } from "react-router-dom";
 

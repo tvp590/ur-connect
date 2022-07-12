@@ -9,7 +9,7 @@ function Pic({ username, profilePicture }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/chat");
+    navigate("/chat/" + username);
   };
 
   const { currentUser } = useAuth();

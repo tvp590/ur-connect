@@ -30,7 +30,7 @@ function App() {
             <Route exact path="/Signup" element={<Signup />} />
             <Route exact path="/chat" element={<Gram />} />
             <Route exact path="/Questionnaires" element={<Questionnaire />} />
-            <Route exact path="/Profile" element={<Profile />} />
+            <Route exact path="/Profile/" element={<Profile />} />
             <Route exact path="/Home/:id" element={<Profile />} />
             <Route exact path="/chat/:id" element={<Thread />} />
           </Routes>

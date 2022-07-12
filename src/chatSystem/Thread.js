@@ -4,11 +4,8 @@ import ClearIcon from "@mui/icons-material/Clear";
 import { useParams } from "react-router-dom";
 import JSONDATA from "../MOCK_DATA.json";
 import LeftBox from "./LeftBox";
-import AttachmentOutlinedIcon from "@mui/icons-material/AttachmentOutlined";
-import EmojiEmotionsOutlinedIcon from "@mui/icons-material/EmojiEmotionsOutlined";
-import SendIcon from "@mui/icons-material/Send";
 
-import { Button, IconButton } from "@mui/material";
+import Submit_Chat from "./Submit_Chat";
 
 function Thread() {
   const { id } = useParams();
@@ -29,7 +26,10 @@ function Thread() {
         <ChatBox>
           <ChatArea></ChatArea>
         </ChatBox>
-        <ChatFoot>
+
+        <Submit_Chat />
+
+        {/* <ChatFoot>
           <AttachIcon>
             <input
               accept="image/*"
@@ -61,7 +61,7 @@ function Thread() {
               </SubmitMsg>
             </IconButton>
           </EmojiIcon>
-        </ChatFoot>
+        </ChatFoot> */}
       </Container>
     </div>
   );
