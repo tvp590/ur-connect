@@ -66,7 +66,7 @@ export default function Signup() {
       navigate("/Home");
     } catch (error) {
       console.log(error);
-      setError("failed to create an account");
+      setError(error.message);
     }
 
     SetWait(false);
