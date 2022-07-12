@@ -1,14 +1,11 @@
-// import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-
 import MoodBadIcon from "@mui/icons-material/MoodBad";
 import MoodOutlinedIcon from "@mui/icons-material/MoodOutlined";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import "./Post.css";
 import Modal from "react-modal/lib/components/Modal";
 import { db } from "../firebase";
 import firebase from "firebase/compat/app";
 import { useAuth } from "../context/AuthContext";
-
+import styled from "styled-components";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectquestionId, setQuestion } from "../app/QSlice";
@@ -69,8 +66,7 @@ function Post({ ID, question, image, timestamp, questionAsker, useravatar }) {
   };
 
   return (
-    <div
-      className="post"
+    <Post__Wrapper
       onClick={() =>
         dispatch(
           setQuestion({
@@ -80,24 +76,24 @@ function Post({ ID, question, image, timestamp, questionAsker, useravatar }) {
         )
       }
     >
-      <div className="postheader">
-        <Avatar
-          src={
-            useravatar
-              ? useravatar
-              : "https://images-platform.99static.com//_QXV_u2KU7-ihGjWZVHQb5d-yVM=/238x1326:821x1909/fit-in/500x500/99designs-contests-attachments/119/119362/attachment_119362573"
-          }
-        />
+      <Post__header>
+        <div>
+          <Avatar
+            src={
+              useravatar
+                ? useravatar
+                : "https://images-platform.99static.com//_QXV_u2KU7-ihGjWZVHQb5d-yVM=/238x1326:821x1909/fit-in/500x500/99designs-contests-attachments/119/119362/attachment_119362573"
+            }
+          />
 
-        <h5>{questionAsker} </h5>
+          <h5>{questionAsker} </h5>
+        </div>
         <small> {new Date(timestamp?.toDate()).toLocaleString()}</small>
-      </div>
-      <div className="postBody">
-        <div className="Post_question">
+      </Post__header>
+      <PostBody>
+        <Post__question>
           <p>{question}</p>
-          <button className="answerbtn" onClick={() => setIsboxopen(true)}>
-            Answer
-          </button>
+          <AnswerButton onClick={() => setIsboxopen(true)}>Answer</AnswerButton>
           <Modal
             isOpen={Isboxopen}
             onRequestClose={() => setIsboxopen(false)}
@@ -116,7 +112,7 @@ function Post({ ID, question, image, timestamp, questionAsker, useravatar }) {
               },
             }}
           >
-            <div className="Questioninfo">
+            <Question__Info>
               <h1>{question}</h1>
               <p>
                 asked by
@@ -127,8 +123,8 @@ function Post({ ID, question, image, timestamp, questionAsker, useravatar }) {
                   {new Date(timestamp?.toDate()).toLocaleString()}
                 </span>
               </p>
-            </div>
-            <div className="answer_modal">
+            </Question__Info>
+            <Answer__Modal>
               <textarea
                 type="text"
                 placeholder="type your answer"
@@ -136,7 +132,7 @@ function Post({ ID, question, image, timestamp, questionAsker, useravatar }) {
                 onChange={(e) => setAnswer(e.currentTarget.value)}
                 required
               />
-            </div>
+            </Answer__Modal>
             <div className="modal_button">
               <button
                 className="cancle_button"
@@ -153,8 +149,8 @@ function Post({ ID, question, image, timestamp, questionAsker, useravatar }) {
               </button>
             </div>
           </Modal>
-        </div>
-        <div className="Post_answer">
+        </Post__question>
+        <Post__answer>
           {allanswer &&
             allanswer.map(({ id, Answers }) => (
               <p
@@ -182,19 +178,172 @@ function Post({ ID, question, image, timestamp, questionAsker, useravatar }) {
                 )}
               </p>
             ))}
-        </div>
+        </Post__answer>
         {image && <img src={image} alt="" />}
-        <div className="post_footer">
-          <div className="Postaction">
+        <Post__Footer>
+          <Post__Action>
             <MoodOutlinedIcon />
             <MoodBadIcon />
 
             <MoreHorizIcon />
-          </div>
-        </div>
-      </div>
-    </div>
+          </Post__Action>
+        </Post__Footer>
+      </PostBody>
+    </Post__Wrapper>
   );
 }
+
+const Post__Wrapper = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  margin-top: 10px;
+  background-color: white;
+  padding: 10px;
+  overflow: hidden;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+`;
+
+const Post__header = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 10px;
+  }
+
+  small {
+    margin-left: 10px;
+  }
+
+  h4 {
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 13px;
+  }
+
+  h4:hover {
+    text-decoration: underline;
+  }
+`;
+
+const PostBody = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  img {
+    width: 100%;
+    height: 100px;
+    object-fit: contain;
+    margin-top: 10px;
+    cursor: pointer;
+    background-color: rgb(238, 238, 238);
+    border-radius: 5px;
+  }
+`;
+
+const Post__question = styled.div`
+  margin-top: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+  flex: 2;
+  p:hover {
+    text-decoration: underline;
+    font-size: large;
+  }
+`;
+
+const Post__answer = styled.div`
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  p {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+  }
+`;
+
+const AnswerButton = styled.button`
+  margin-left: auto;
+  outline: none;
+  cursor: pointer;
+
+  hover {
+    background-color: #ffd502;
+  }
+`;
+
+const Post__Footer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+
+  MuiSvgIcon-root {
+    color: lightgray;
+    margin-right: 40px;
+    cursor: pointer;
+  }
+`;
+
+const Post__Action = styled.div`
+  background-color: lightgray;
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  border-radius: 33px;
+  padding: 5px;
+
+  MuiSvgIcon-root {
+    color: gray;
+    margin-right: 40px;
+    cursor: pointer;
+  }
+  .MuiSvgIcon-root:hover {
+    color: rgb(255, 238, 0);
+    margin-right: 40px;
+  }
+`;
+
+const Question__Info = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  h1 {
+    color: #91120e;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: gray;
+    font-size: small;
+  }
+
+  .userinfo {
+    color: black;
+    font-weight: 700;
+  }
+`;
+
+const Answer__Modal = styled.div`
+  textarea {
+    width: 100%;
+    font-size: 15px;
+    height: 200px;
+    padding: 5px;
+  }
+`;
 
 export default Post;
