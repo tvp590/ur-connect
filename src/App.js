@@ -14,6 +14,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signup from "./LandingPages/Signup";
 import Forgot from "./LandingPages/Forgot";
 import Thread from "./chatSystem/Thread";
+import Questionnaire from "./QandA/Questionnair";
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
             <Route exact path="/Home" element={<Home />} />
             <Route exact path="/Signup" element={<Signup />} />
             <Route exact path="/chat" element={<Gram />} />
-            {/* <Route exact path="/Questionnaires" element={<Questionnaire />} /> */}
+            <Route exact path="/Questionnaires" element={<Questionnaire />} />
             <Route exact path="/Profile" element={<Profile />} />
             <Route exact path="/Home/:id" element={<Profile />} />
             <Route exact path="/chat/:id" element={<Thread />} />

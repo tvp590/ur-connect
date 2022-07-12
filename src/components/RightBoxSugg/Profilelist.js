@@ -2,16 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import { Avatar } from "@mui/material";
 
-function Profilelist() {
+function Profilelist({ username, photoURL }) {
   return (
     <Main>
       <Profile>
         <a href="/profile">
-          <User__Avatar src="/post1.png" alt="Devansh" />
+          <User__Avatar src={photoURL} alt={username} />
         </a>
         <Wrapper>
           <User__name href="/profile">
-            <h3>Devansh</h3>
+            <h3>{username}</h3>
           </User__name>
           <span>Follows you</span>
         </Wrapper>
@@ -27,6 +27,7 @@ const Main = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-right: 10px;
   a {
     color: blue;
     font-size: 12px;

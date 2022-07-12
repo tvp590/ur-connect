@@ -1,25 +1,28 @@
 import React from "react";
 import styled from "styled-components";
 import Profilelist from "./Profilelist";
+import JSONDATA from "../../MOCK_DATA.json";
+import { Link } from "react-router-dom";
 
 function Suggestion() {
+  const size = 5;
+  const items = JSONDATA.slice(0, size);
+
   return (
     <Wrap>
       <MainBox>
         <Sugheading>
-          <p>Suggestions For You</p>
-          <p> See all </p>
+          <p>Suggestions for You</p>
         </Sugheading>
         <SuggestionBox>
-          <Profilelist />
-          <Profilelist />
-          <Profilelist />
-          <Profilelist />
+          {items.map((item) => (
+            <Profilelist username={item.username} photoURL={item.imageURL} />
+          ))}
         </SuggestionBox>
         <About>
           <p>
-            About • Help • Press • API • Jobs • PrivacyTerms • Locations •
-            Language • English
+            <a href="/About">About</a> • <Link to={"/Help"}>Help</Link> •
+            PrivacyTerms • Language
           </p>
           <p>c 2022 URCONNECT FROM STUDENT </p>
         </About>
@@ -31,7 +34,8 @@ function Suggestion() {
 const Wrap = styled.div`
   margin-top: 100px;
   margin-left: 50px;
-  width: 70%;
+  width: 400px;
+
   background-color: white;
   border-radius: 4px;
   padding: 20px;
@@ -40,21 +44,28 @@ const Wrap = styled.div`
 
 const MainBox = styled.div`
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   p {
     margin-top: 15px;
   }
 `;
 const Sugheading = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   p:first-child {
     color: grey;
   }
+  margin-left: 20px;
 `;
 
 const SuggestionBox = styled.div`
   margin-top: 15px;
+  width: 100%;
 `;
 
 const About = styled.div`

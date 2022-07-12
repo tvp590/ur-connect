@@ -1,0 +1,148 @@
+.post {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    background-color: white;
+    padding: 10px;
+    overflow: hidden;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    box-shadow: 0px 5px 8px -9px solid rgab(0, 0, 0, 0.5);
+  }
+  
+.postheader {
+    display: flex;
+    align-items: center;
+  }
+
+.postheader > small {
+    margin-left: 10px;
+  }
+  
+.postheader > h4 {
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 13px;
+  }
+
+  
+.postheader > h4:hover {
+    text-decoration: underline;
+  }
+
+.postBody {
+    display: flex;
+    flex-direction: column;
+  }
+  
+.Post_question {
+    margin-top: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+    flex: 2;
+  }
+  
+.answerbtn {
+    margin-left: auto;
+    outline: none;
+    cursor: pointer;
+  }
+  
+.answerbtn:hover {
+    background-color: #ffd502;
+   
+  }
+  
+.Post_question > p:hover {
+    text-decoration: underline;
+    font-size: large;
+  }
+  
+.postBody > .Post_answer > p {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  
+.postBody > img {
+    width: 100%;
+    height: 100px;
+    object-fit: contain;
+    margin-top: 10px;
+    cursor: pointer;
+    background-color: rgb(238, 238, 238);
+    border-radius: 5px;
+  }
+  
+.post_footer {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+  }
+  
+  .post_footer > .MuiSvgIcon-root {
+    color: lightgray;
+    margin-right: 40px;
+    cursor: pointer;
+  }
+  
+  .Postaction {
+    background-color: lightgray;
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 33px;
+    padding: 5px;
+  }
+  .Postaction > .MuiSvgIcon-root {
+    color: gray;
+    margin-right: 40px;
+    cursor: pointer;
+  }
+  
+  .Postaction > .MuiSvgIcon-root:hover {
+    color: rgb(255, 238, 0);
+    margin-right: 40px;
+  }
+
+
+
+.Questioninfo {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.Questioninfo > h1 {
+  color: #91120e;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.Questioninfo > p {
+  color: gray;
+  font-size: small;
+}
+
+.Questioninfo > p > .userinfo {
+  color: black;
+  font-weight: 700;
+}
+
+.answer_modal {
+  display: flex;
+  flex: 1;
+  padding-top: 20px;
+}
+
+.answer_modal > textarea {
+  width: 100%;
+  font-size: 15px;
+  height: 200px;
+  padding: 5px;
+ 
+}
