@@ -98,7 +98,9 @@ function Post({ ID, question, image, timestamp, questionAsker, useravatar }) {
       <PostBody>
         <Post__question>
           <Question__Field>
-            <h4>{question}</h4>
+            <div>
+              <h4>{question}</h4>
+            </div>
             <AnswerButton onClick={handleOpen}>Answer</AnswerButton>
           </Question__Field>
           <Modal__Component open={Isopen} onClose={handleClose}>
@@ -129,7 +131,7 @@ function Post({ ID, question, image, timestamp, questionAsker, useravatar }) {
                   autoComplete="off"
                 />
                 <Box__Footer__button>
-                  <AnswerButton onClick={handleClose}>cancel</AnswerButton>
+                  <AnswerButton onClick={handleClose}>Cancel</AnswerButton>
                   <AnswerButton
                     className="submit_button"
                     type="submit"
@@ -247,6 +249,10 @@ const Question__Field = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  div {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 `;
 
 const Post__answer = styled.div`
@@ -314,6 +320,8 @@ const Question__Info = styled.div`
   flex-direction: row;
   justify-content: space-between;
   padding-left: 20px;
+
+  word-wrap: break-word;
 `;
 const Modal__Component = styled(Modal)`
   display: flex;
@@ -327,6 +335,7 @@ const Modal__Component = styled(Modal)`
 const Box__Wrapper__Answer = styled.div`
   display: flex;
   flex-direction: column;
+  overflow: scroll;
 
   width: 55%;
   height: 70%;
