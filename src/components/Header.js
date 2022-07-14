@@ -33,6 +33,7 @@ function Header() {
   const [value, setValue] = useState("");
 
   const onChange = (event) => {
+    handleOpen();
     setValue(event.target.value);
   };
 
@@ -40,6 +41,9 @@ function Header() {
     navigate(`/Home/${searchTerm}`);
   };
 
+  const [Isopen, setIsopen] = useState(false);
+  const handleOpen = () => setIsopen(true);
+  const handleClose = () => setIsopen(false);
   return (
     <div>
       <Container>
@@ -48,25 +52,33 @@ function Header() {
         </a>
 
         <Menu>
+          {/* ///// some bug with search bbarr */}
           <Searchbar>
             <SearchbarInput
               type="text"
               placeholder="Search"
-              value={value}
               onChange={onChange}
+              autoFocus={true}
             />
-            <Dropdown>
-              {JSONDATA.filter((item) => {
-                const searchTerm = value.toLowerCase();
-                const Name = item.username.toLowerCase();
+            {/* <Modal__Component
+              open={Isopen}
+              // onClose={handleClose}
+              disableAutoFocus
+              hideBackdrop={true}
+            >
+              <Dropdown>
+                {JSONDATA.filter((item) => {
+                  const searchTerm = value.toLowerCase();
+                  const Name = item.username.toLowerCase();
 
-                return searchTerm && Name.startsWith(searchTerm);
-              }).map((item) => (
-                <DropdownItem onClick={() => onSearch(item.username)}>
-                  {item.username}
-                </DropdownItem>
-              ))}
-            </Dropdown>
+                  return searchTerm && Name.startsWith(searchTerm);
+                }).map((item) => (
+                  <DropdownItem onClick={() => onSearch(item.username)}>
+                    {item.username}
+                  </DropdownItem>
+                ))}
+              </Dropdown>
+            </Modal__Component> */}
 
             {/* <CustomModal
             disableAutoFocus
@@ -101,7 +113,14 @@ function Header() {
 
 export default Header;
 
-const Dropdown = styled.div``;
+const Dropdown = styled.div`
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
 
 const DropdownItem = styled.div`
   cursor: pointer;
@@ -138,7 +157,7 @@ const Container = styled.div`
   top: 0;
   left: 0;
   right: 0;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
   background-color: white;
   z-index: 1;
 `;
@@ -182,6 +201,13 @@ const SearchbarInput = styled.input`
   &:focus {
     margin-right: 20px;
   }
+`;
+
+const Modal__Component = styled(Modal)`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 `;
 
 const HomeI = styled(HomeIcon)``;

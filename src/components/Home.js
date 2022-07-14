@@ -5,6 +5,7 @@ import Suggestion from "./RightBoxSugg/Suggestion";
 import Header from "./Header";
 import Slide from "react-reveal/Slide";
 import JSONDATA from "../MOCK_DATA.json";
+import value from "./Header";
 // import { db } from "./firebase";
 
 function Home() {
@@ -29,6 +30,7 @@ function Home() {
       <Header />
       <Slide left>
         <HomeContainer>
+          {console.log(value)}
           {JSONDATA.map((post) => (
             <Post
               username={post.username}

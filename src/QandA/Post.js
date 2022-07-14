@@ -1,7 +1,7 @@
 import MoodBadIcon from "@mui/icons-material/MoodBad";
 import MoodOutlinedIcon from "@mui/icons-material/MoodOutlined";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import Modal from "react-modal/lib/components/Modal";
+import Modal from "@mui/material/Modal";
 import { db } from "../firebase";
 import firebase from "firebase/compat/app";
 import { useAuth } from "../context/AuthContext";
@@ -10,6 +10,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectquestionId, setQuestion } from "../app/QSlice";
 import { Avatar } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import { IconButton } from "@mui/material";
 
 function Post({ ID, question, image, timestamp, questionAsker, useravatar }) {
   const dispatch = useDispatch();
@@ -24,7 +26,10 @@ function Post({ ID, question, image, timestamp, questionAsker, useravatar }) {
   //     }
   // },[])
 
-  const [Isboxopen, setIsboxopen] = useState(false);
+  const [Isopen, setIsopen] = useState(false);
+
+  const handleOpen = () => setIsopen(true);
+  const handleClose = () => setIsopen(false);
   const [answer, setAnswer] = useState("");
   const [allanswer, setAllanswer] = useState("");
 
@@ -62,7 +67,7 @@ function Post({ ID, question, image, timestamp, questionAsker, useravatar }) {
     }
 
     setAnswer("");
-    setIsboxopen(false);
+    handleClose();
   };
 
   return (
@@ -86,69 +91,56 @@ function Post({ ID, question, image, timestamp, questionAsker, useravatar }) {
             }
           />
 
-          <h5>{questionAsker} </h5>
+          <h4>{questionAsker} </h4>
         </div>
         <small> {new Date(timestamp?.toDate()).toLocaleString()}</small>
       </Post__header>
       <PostBody>
         <Post__question>
-          <p>{question}</p>
-          <AnswerButton onClick={() => setIsboxopen(true)}>Answer</AnswerButton>
-          <Modal
-            isOpen={Isboxopen}
-            onRequestClose={() => setIsboxopen(false)}
-            shouldCloseOnOverlayClick={false}
-            style={{
-              overlay: {
-                width: 750,
-                height: 650,
-                border: "1px solid",
-                backgroundColor: "#930313",
-                zIndex: "1000",
-                marginTop: "-300px",
-                marginLeft: "-350px",
-                left: "50%",
-                top: "50%",
-              },
-            }}
-          >
-            <Question__Info>
-              <h1>{question}</h1>
+          <Question__Field>
+            <h4>{question}</h4>
+            <AnswerButton onClick={handleOpen}>Answer</AnswerButton>
+          </Question__Field>
+          <Modal__Component open={Isopen} onClose={handleClose}>
+            <Box__Wrapper__Answer>
+              <Box__Header__Answer>
+                <div></div>
+
+                <IconButton>
+                  <CloseIcon onClick={handleClose} className="SvgIconsSec" />
+                </IconButton>
+              </Box__Header__Answer>
+              <Question__Info>
+                <h1>{question}</h1>
+              </Question__Info>
+              <br />
               <p>
-                asked by
-                <span className="userinfo"> {questionAsker} </span>
-                on
-                <span className="userinfo">
-                  {" "}
-                  {new Date(timestamp?.toDate()).toLocaleString()}
-                </span>
+                <span>asked by {questionAsker} </span>
+
+                <span>on {new Date(timestamp?.toDate()).toLocaleString()}</span>
               </p>
-            </Question__Info>
-            <Answer__Modal>
-              <textarea
-                type="text"
-                placeholder="type your answer"
-                value={answer}
-                onChange={(e) => setAnswer(e.currentTarget.value)}
-                required
-              />
-            </Answer__Modal>
-            <div className="modal_button">
-              <button
-                className="cancle_button"
-                onClick={() => setIsboxopen(false)}
-              >
-                cancel
-              </button>
-              <button
-                className="submit_button"
-                type="submit"
-                onClick={handlesubmit}
-              >
-                Post Answer
-              </button>
-            </div>
-          </Modal>
+              <Answer__Modal>
+                <TextArea__Answer
+                  minRows={1}
+                  maxRows={10}
+                  placeholder="Type your answer..."
+                  value={answer}
+                  onChange={(e) => setAnswer(e.currentTarget.value)}
+                  autoComplete="off"
+                />
+                <Box__Footer__button>
+                  <AnswerButton onClick={handleClose}>cancel</AnswerButton>
+                  <AnswerButton
+                    className="submit_button"
+                    type="submit"
+                    onClick={handlesubmit}
+                  >
+                    Post Answer
+                  </AnswerButton>
+                </Box__Footer__button>
+              </Answer__Modal>
+            </Box__Wrapper__Answer>
+          </Modal__Component>
         </Post__question>
         <Post__answer>
           {allanswer &&
@@ -179,15 +171,7 @@ function Post({ ID, question, image, timestamp, questionAsker, useravatar }) {
               </p>
             ))}
         </Post__answer>
-        {image && <img src={image} alt="" />}
-        <Post__Footer>
-          <Post__Action>
-            <MoodOutlinedIcon />
-            <MoodBadIcon />
-
-            <MoreHorizIcon />
-          </Post__Action>
-        </Post__Footer>
+        {/* {image && <img src={image} alt="" />} */}
       </PostBody>
     </Post__Wrapper>
   );
@@ -204,6 +188,10 @@ const Post__Wrapper = styled.div`
   border: 1px solid lightgrey;
   border-radius: 5px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  postion: absolute;
+  &:hover {
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.6);
+  }
 `;
 
 const Post__header = styled.div`
@@ -221,16 +209,6 @@ const Post__header = styled.div`
 
   small {
     margin-left: 10px;
-  }
-
-  h4 {
-    margin-left: 10px;
-    cursor: pointer;
-    font-size: 13px;
-  }
-
-  h4:hover {
-    text-decoration: underline;
   }
 `;
 
@@ -253,14 +231,22 @@ const Post__question = styled.div`
   margin-top: 10px;
   cursor: pointer;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
   font-weight: bold;
   margin-bottom: 10px;
-  flex: 2;
-  p:hover {
-    text-decoration: underline;
-    font-size: large;
+
+  h4:hover {
   }
+`;
+
+const Question__Field = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const Post__answer = styled.div`
@@ -275,12 +261,20 @@ const Post__answer = styled.div`
 `;
 
 const AnswerButton = styled.button`
-  margin-left: auto;
+  background-color: black;
+  border: none;
   outline: none;
   cursor: pointer;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  margin-left: 20px;
 
-  hover {
-    background-color: #ffd502;
+  &:hover {
+    background-color: white;
+    border: 1px solid black;
+    padding: 9px;
+    color: black;
   }
 `;
 
@@ -317,33 +311,77 @@ const Post__Action = styled.div`
 
 const Question__Info = styled.div`
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 20px;
+`;
+const Modal__Component = styled(Modal)`
+  display: flex;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+`;
+
+const Box__Wrapper__Answer = styled.div`
+  display: flex;
   flex-direction: column;
 
-  h1 {
-    color: #91120e;
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
+  width: 55%;
+  height: 70%;
+  background-color: white;
+  outline: none;
+  border-radius: 10px;
 
   p {
-    color: gray;
-    font-size: small;
-  }
-
-  .userinfo {
-    color: black;
-    font-weight: 700;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-right: 20px;
+    span {
+      margin-left: 10px;
+    }
   }
 `;
 
+const Box__Header__Answer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+`;
+
 const Answer__Modal = styled.div`
-  textarea {
-    width: 100%;
-    font-size: 15px;
-    height: 200px;
-    padding: 5px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 20px;
+`;
+
+const Box__Footer__button = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 20px;
+`;
+
+const TextArea__Answer = styled.textarea`
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  margin-bottom: 10px;
+  font-size: 20px;
+  height: 270px;
+  padding-right: 20px;
+  margin-top: 10px;
+  resize: none;
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
   }
+  width: 100%;
 `;
 
 export default Post;
