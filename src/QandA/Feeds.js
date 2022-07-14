@@ -78,7 +78,8 @@ function Feeds() {
   return (
     <News__Feed>
       <Ask__question>
-        <Avatar src={currentUser.photoURL} />
+        {/* src=currentUser.photoURL  */}
+        <Avatar />
         <AstQ__div onClick={handleOpen}>
           What do you want to ask or share?
         </AstQ__div>
